@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "esnext",
+        "strict": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "outDir": "./dist",
+        "sourceMap": true,
+        "paths": {
+            "mini-signals": [
+                "node_modules/resource-loader/typings/mini-signals.d.ts"
+            ],
+            "resource-loader": [
+                "node_modules/resource-loader/typings/resource-loader.d.ts"
+            ],
+            "pixi.js": [
+                "node_modules/pixi.js/index.d.ts"
+            ],
+            "*": [
+                "*",
+                "node_modules/*/index.d.ts",
+                "node_modules/*/types/index.d.ts"
+            ]
+        },
+        "allowSyntheticDefaultImports": true,
+        "allowUmdGlobalAccess": true,
+        "baseUrl": "./",
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
