@@ -13,14 +13,6 @@ export class MagicWordsProject extends Container implements IProject {
         "Just a random text",
         "Games are great",
     ];
-
-    private imageUrls: string[] = [
-        '/assets/MagicWordsProject/Cat1.png',
-        '/assets/MagicWordsProject/Cat2.png',
-        '/assets/MagicWordsProject/Cat3.png',
-        '/assets/MagicWordsProject/Cat4.png',
-    ];
-
     private configurations: string[] = [
         'T',
         'I',
@@ -40,6 +32,7 @@ export class MagicWordsProject extends Container implements IProject {
     private backFunction: () => void;
     constructor(goToMainMenu: () => void) {
         super();
+
         this.backFunction = goToMainMenu;
 
     }
@@ -84,8 +77,7 @@ export class MagicWordsProject extends Container implements IProject {
     }
 
     private displayImageConfiguration(x: number, y: number): Sprite {
-        const randomImages = this.getRandomImages(1);
-        const imageTexture = Texture.from(new URL(randomImages[0], import.meta.url).href);
+        const imageTexture = Texture.from(this.getRandomImage());
         const imageSprite = new Sprite(imageTexture);
         imageSprite.width = 50;
         imageSprite.height = 50;
@@ -119,13 +111,22 @@ export class MagicWordsProject extends Container implements IProject {
         return this.configurations[randomIndex];
     }
 
-    private getRandomImages(count: number): string[] {
-        const selectedImages: string[] = [];
-        for (let i = 0; i < count; i++) {
-            const randomIndex = Math.floor(Math.random() * this.imageUrls.length);
-            selectedImages.push(this.imageUrls[randomIndex]);
+    private getRandomImage(): string {
+        const randomIndex = Math.floor(Math.random() * 4);
+        switch (randomIndex) {
+            case 0:
+                return new URL('/assets/MagicWordsProject/Cat1.png', import.meta.url).href;
+            case 1:
+                return new URL('/assets/MagicWordsProject/Cat2.png', import.meta.url).href;
+            case 2:
+                return new URL('/assets/MagicWordsProject/Cat3.png', import.meta.url).href;
+            case 3:
+                return new URL('/assets/MagicWordsProject/Cat4.png', import.meta.url).href
+
+            default:
+                return "";
         }
-        return selectedImages;
+
     }
 
     private getRandomFontSize(): number {
